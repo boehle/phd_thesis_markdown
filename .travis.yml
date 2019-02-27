@@ -30,6 +30,7 @@ before_install:
   # - sudo apt-get install lmodern
   - brew install pandoc
   - brew install pandoc-citeproc
+  - brew install pandoc-crossref
   - brew cask install mactex
   - tlmgr info fontspec
 

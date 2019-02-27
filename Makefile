@@ -37,6 +37,7 @@ pdf:
 	-V documentclass=report \
 	-N \
 	--pdf-engine=xelatex \
+	--filter pandoc-crossref \
 	--verbose
 
 tex:
@@ -49,14 +50,16 @@ tex:
 	-V documentclass=report \
 	-N \
 	--csl="$(STYLEDIR)/ref_format.csl" \
-	--latex-engine=xelatex
+	--latex-engine=xelatex \
+	--filter pandoc-crossref
 
 docx:
 	pandoc "$(INPUTDIR)"/*.md \
 	-o "$(OUTPUTDIR)/thesis.docx" \
 	--bibliography="$(BIBFILE)" \
 	--csl="$(STYLEDIR)/ref_format.csl" \
-	--toc
+	--toc \
+	--filter pandoc-crossref
 
 html:
 	pandoc "$(INPUTDIR)"/*.md \
@@ -67,7 +70,8 @@ html:
 	--csl="$(STYLEDIR)/ref_format.csl" \
 	--include-in-header="$(STYLEDIR)/style.css" \
 	--toc \
-	--number-sections
+	--number-sections \
+	--filter pandoc-crossref
 	rm -rf "$(OUTPUTDIR)/source"
 	mkdir "$(OUTPUTDIR)/source"
 	cp -r "$(INPUTDIR)/figures" "$(OUTPUTDIR)/source/figures"
